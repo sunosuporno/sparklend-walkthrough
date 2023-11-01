@@ -28,10 +28,10 @@ Next, enter the amount of ETH you want to swap for DAI and click on 'Swap' (~100
 ### Step 4: Install the SparkLend Walkthrough repo
 
 For this make sure you have Foundry installed. If you don't have it installed, follow the steps [here](https://book.getfoundry.sh/getting-started/installation). </br>
-Clone the repo here, or go to a directory of your choice and run the following command:
+Clone the repo [here](https://github.com/sunosuporno/sparklend-walkthrough), or go to a directory of your choice and run the following command:
 
 ```
-
+git clone https://github.com/sunosuporno/sparklend-walkthrough.git
 ```
 
 ### Step 5: Inspecting the smart contracts
