@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.21;
+pragma solidity ^0.8.21;
 
 import "./IPool.sol";
 import "./IERC20.sol";
@@ -7,12 +7,13 @@ import "./IERC20.sol";
 contract SparkLendIntegration {
     IPool public pool;
     IERC20 public dai;
-    address public poolAddress;
+
+    // address public poolAddress;
 
     constructor(address _pool, address _dai) {
         pool = IPool(_pool);
         dai = IERC20(_dai);
-        poolAddress = _pool;
+        // poolAddress = _pool;
     }
 
     function supply(
@@ -50,9 +51,27 @@ contract SparkLendIntegration {
         uint256 amount,
         uint256 rateMode,
         address onBehalfOf
-    ) external {
+    ) external returns (uint256) {
         // your contract logic
 
         pool.repay(asset, amount, rateMode, onBehalfOf);
+    }
+
+    function getUserAccountData(
+        address user
+    )
+        external
+        view
+        returns (
+            uint256 totalCollateralETH,
+            uint256 totalDebtETH,
+            uint256 availableBorrowsETH,
+            uint256 currentLiquidationThreshold,
+            uint256 ltv,
+            uint256 healthFactor
+        )
+    {
+        // your contract logic
+        pool.getUserAccountData(user);
     }
 }

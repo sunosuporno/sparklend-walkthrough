@@ -21,7 +21,7 @@ Next it's time for getting some Goerli Testnet ETH. There are several sites to g
 
 ### Step 3: Get some testnet DAI
 
-SparkLend supports a few tokens, these are DAI, rETH, stETH. For this guide we will be using DAI as it can be easily attained. </br>
+SparkLend supports a few tokens, these are DAI, rETH, wstETH. For this guide we will be using DAI as it can be easily attained. </br>
 For this you need to go to [Uniswap](https://app.uniswap.org/swap?chain=goerli). Here you need to connect to **Goerli**. Next, in the swap UI, select ETH as the 'from' token and DAI as the 'to' token. If you can't find DAI or see more than one instances, enter the official token address for DAI which is `0x11fE4B6AE13d2a6055C8D9cF65c55bac32B5d844`. </br>
 Next, enter the amount of ETH you want to swap for DAI and click on 'Swap' (~100 DAI should be enough). Confirm the transaction and you will have DAI in your wallet. </br>
 
@@ -80,5 +80,5 @@ If successful, you should see the following outputs: </br>
 Now you can go to [Etherscan](https://goerli.etherscan.io/) and search for the contract address. You should see the contract with the name `SparkLendScript`. </br>
 Go to the 'Write Contract' tab and you should see the 4 functions we discussed earlier. </br>
 ![Write Contract](./write-contract.png) </br>
-Now, press the conect button and connect your Metamask wallet. Now, you can interact with any of the functions. </br>
+Now, press the connect button and connect your Metamask wallet. Now, you can interact with any of the functions. </br>
 Congratulations! You've successfully interacted with the SparkLend protocol using contracts and now you can integrate it with your protocol! 🎉
