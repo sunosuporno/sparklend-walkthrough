@@ -16,13 +16,33 @@ contract SparkLendIntegration {
         // poolAddress = _pool;
     }
 
+    // function supply(
+    //     address asset,
+    //     uint256 amount,
+    //     address onBehalfOf,
+    //     uint16 referralCode
+    // ) external {
+    //     //your contract logic
+    //     pool.supply(asset, amount, onBehalfOf, referralCode);
+    // }
+
     function supply(
         address asset,
         uint256 amount,
         address onBehalfOf,
         uint16 referralCode
     ) external {
-        //your contract logic
+        // To ensure that the SparkLendIntegration contract has the necessary approvals
+        require(
+            dai.transferFrom(msg.sender, address(this), amount),
+            "Failed to transfer DAI to SparkLendIntegration"
+        );
+
+        // To call the pool contract's supply function directly
+        require(
+            dai.approve(address(pool), amount),
+            "Failed to approve DAI for Pool contract"
+        );
         pool.supply(asset, amount, onBehalfOf, referralCode);
     }
 

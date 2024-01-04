@@ -18,7 +18,7 @@ contract SparkLendIntegrationTest is Test {
         );
 
         dai = IERC20(0x6B175474E89094C44Da98b954EedeAC495271d0F);
-        deal(address(dai), address(this), 10 ether);
+        deal(address(dai), address(this), 100 ether);
     }
 
     function testDeposit() public {
@@ -37,8 +37,8 @@ contract SparkLendIntegrationTest is Test {
         uint balBefore = dai.balanceOf(address(this));
         console.log("balBefore", balBefore);
 
-        dai.approve(address(sparkLend), 8 ether);
-        sparkLend.supply(address(dai), 1 ether, address(this), 0);
+        dai.approve(address(sparkLend), 80 ether);
+        sparkLend.supply(address(dai), 80 ether, address(0x078), 0);
 
         uint balAfter = dai.balanceOf(address(this));
         console.log("balAfter", balAfter);
@@ -55,3 +55,5 @@ contract SparkLendIntegrationTest is Test {
         ) = sparkLend.getUserAccountData(address(this));
     }
 }
+
+// forge test --fork-url https://eth-mainnet.g.alchemy.com/v2/UIHGVcR4gARi_2y0C5WFBNQvEKyqmDak --match-path test/SparkLend.t.sol -vvvv
