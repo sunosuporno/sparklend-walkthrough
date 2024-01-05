@@ -53,6 +53,7 @@ contract SparkLendIntegration {
     ) external returns (uint256) {
         // your contract logic
         pool.withdraw(asset, amount, to);
+        dai.transfer(msg.sender, amount);
     }
 
     function borrow(
@@ -83,15 +84,15 @@ contract SparkLendIntegration {
         external
         view
         returns (
-            uint256 totalCollateralETH,
-            uint256 totalDebtETH,
-            uint256 availableBorrowsETH,
+            uint256 totalCollateralBase,
+            uint256 totalDebtBase,
+            uint256 availableBorrowsBase,
             uint256 currentLiquidationThreshold,
             uint256 ltv,
             uint256 healthFactor
         )
     {
         // your contract logic
-        pool.getUserAccountData(user);
+        return pool.getUserAccountData(user);
     }
 }

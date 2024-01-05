@@ -13,7 +13,7 @@ contract SparkLendIntegrationTest is Test {
 
     function setUp() public {
         sparkLend = new SparkLendIntegration(
-            0x8115366Ca7Cf280a760f0bC0F6Db3026e2437115,
+            0xC13e21B648A5Ee794902342038FF3aDAB66BE987,
             0x6B175474E89094C44Da98b954EedeAC495271d0F
         );
 
@@ -38,21 +38,49 @@ contract SparkLendIntegrationTest is Test {
         console.log("balBefore", balBefore);
 
         dai.approve(address(sparkLend), 80 ether);
-        sparkLend.supply(address(dai), 80 ether, address(0x078), 0);
+        sparkLend.supply(
+            address(dai),
+            80 ether,
+            address(address(sparkLend)),
+            0
+        );
 
         uint balAfter = dai.balanceOf(address(this));
         console.log("balAfter", balAfter);
 
         assertLt(balAfter, balBefore, "balBefore is not greater than balAfter");
 
-        (
-            uint256 totalCollateralETH,
-            uint256 totalDebtETH,
-            uint256 availableBorrowsETH,
-            uint256 currentLiquidationThreshold,
-            uint256 ltv,
-            uint256 healthFactor
-        ) = sparkLend.getUserAccountData(address(this));
+        // (
+        //     uint256 totalCollateralETH,
+        //     uint256 totalDebtETH,
+        //     uint256 availableBorrowsETH,
+        //     uint256 currentLiquidationThreshold,
+        //     uint256 ltv,
+        //     uint256 healthFactor
+        // ) = sparkLend.getUserAccountData(address(sparkLend));
+        // console.log("totalCollateralETH", totalCollateralETH);
+        // console.log("totalDebtETH", totalDebtETH);
+        // console.log("availableBorrowsETH", availableBorrowsETH);
+        // console.log("currentLiquidationThreshold", currentLiquidationThreshold);
+        // console.log("ltv", ltv);
+        // console.log("healthFactor", healthFactor);
+
+        // sparkLend.withdraw(address(dai), 80 ether, address(sparkLend));
+
+        // uint balFinal = dai.balanceOf(address(this));
+        // console.log("balFinal", balFinal);
+
+        // assertGt(balFinal, balAfter, "balAfter is not greater than balBefore");
+    }
+
+    function testWithdraw() public {
+        testSupply();
+
+        sparkLend.withdraw(address(dai), 80 ether, address(sparkLend));
+
+        uint balAfter = dai.balanceOf(address(this));
+
+        assertEq(balAfter, 100 ether, "balAfter is not equal to 100 ethers");
     }
 }
 
