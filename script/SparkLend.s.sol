@@ -10,8 +10,10 @@ contract SparkLendScript is Script {
         vm.startBroadcast(deployerPrivateKey);
 
         SparkLendIntegration sparkLendIntegration = new SparkLendIntegration(
-            0x26ca51Af4506DE7a6f0785D20CD776081a05fF6d,
-            0x11fE4B6AE13d2a6055C8D9cF65c55bac32B5d844
+            0xC13e21B648A5Ee794902342038FF3aDAB66BE987,
+            0x6B175474E89094C44Da98b954EedeAC495271d0F,
+            0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48,
+            0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2
         );
         vm.stopBroadcast();
     }

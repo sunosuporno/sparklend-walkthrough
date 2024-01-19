@@ -7,12 +7,16 @@ import "./IERC20.sol";
 contract SparkLendIntegration {
     IPool public pool;
     IERC20 public dai;
+    IERC20 public usdc;
+    IERC20 public weth;
 
     // address public poolAddress;
 
-    constructor(address _pool, address _dai) {
+    constructor(address _pool, address _dai, address _usdc, address _weth) {
         pool = IPool(_pool);
         dai = IERC20(_dai);
+        usdc = IERC20(_usdc);
+        weth = IERC20(_weth);
         // poolAddress = _pool;
     }
 
@@ -34,13 +38,13 @@ contract SparkLendIntegration {
     ) external {
         // To ensure that the SparkLendIntegration contract has the necessary approvals
         require(
-            dai.transferFrom(msg.sender, address(this), amount),
+            IERC20(asset).transferFrom(msg.sender, address(this), amount),
             "Failed to transfer DAI to SparkLendIntegration"
         );
 
         // To call the pool contract's supply function directly
         require(
-            dai.approve(address(pool), amount),
+            IERC20(asset).approve(address(pool), amount),
             "Failed to approve DAI for Pool contract"
         );
         pool.supply(asset, amount, onBehalfOf, referralCode);
@@ -53,7 +57,7 @@ contract SparkLendIntegration {
     ) external returns (uint256) {
         // your contract logic
         pool.withdraw(asset, amount, to);
-        dai.transfer(msg.sender, amount);
+        IERC20(asset).transfer(msg.sender, amount);
     }
 
     function borrow(
@@ -65,6 +69,7 @@ contract SparkLendIntegration {
     ) external {
         // your contract logic
         pool.borrow(asset, amount, interestRateMode, referralCode, onBehalfOf);
+        IERC20(asset).transfer(msg.sender, amount);
     }
 
     function repay(
