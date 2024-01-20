@@ -65,8 +65,8 @@ contract SparkLendIntegration {
 }
 ```
 
-Here, you can see our contract imports 2 interfaces - `IPool` and `IERC20`. `IPool` is used for integrating with the pool and `IERC20` for interacting with the two token contracts we will work with: DAI and WETH</br>
-In the same folder as the `SparkLend.sol` file, create a new file called `IPool.sol` and paste the [code from here](https://etherscan.io/address/0x8115366Ca7Cf280a760f0bC0F6Db3026e2437115#code#F16#L1) </br>
+Here, you can see our contract imports 2 interfaces - `IPool` and `IERC20`. `IPool` is used for integrating with the Pool of SparkLend and `IERC20` for interacting with the two token contracts we will work with: DAI and WETH.</br>
+In the same folder as the `SparkLend.sol` file, create a new file called `IPool.sol` and paste the [code from here](https://etherscan.io/address/0x8115366Ca7Cf280a760f0bC0F6Db3026e2437115#code#F16#L1). </br>
 Similarly, create a new file called `IERC20.sol` and paste the [code from here](https://etherscan.io/address/0x8115366Ca7Cf280a760f0bC0F6Db3026e2437115#code#F21#L1). </br>
 Now, if you look at the `IPool.sol` file, you'll notice it inherits the `DataTypes.sol` file. So, create a new file called `DataTypes.sol` and paste the [code from here](https://etherscan.io/address/0x8115366Ca7Cf280a760f0bC0F6Db3026e2437115#code#F12#L1). </br>
 Now, we are ready to tackle the functions!
@@ -328,7 +328,7 @@ Once you have the RPC endpoint, you can run the following command in your termin
 forge test --fork-url your-rpc-url --match-path test/SparkLend.t.sol
 ```
 
-Here, replace `your-rpc-url` with your RPC endpoint. Make sure you are running the command in the same directory as this</br>
+Here, replace `your-rpc-url` with your RPC endpoint. Make sure you are running the command in the same directory as this project.</br>
 If everything is executed correctly, you should see the following output: </br>
 ![Test results](./test_results.png)
 If you want to view any extra logs or see how each function gets called, you can opt for the `-vvvv` flag after pasting the above command. </br>
